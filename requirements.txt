@@ -9,7 +9,6 @@ aws-cdk.aws-s3==1.116.0
 aws-sam-cli
 ipython
 pytest
-u8darts
 jupyterlab
 ipywidgets
 ipympl
@@ -22,8 +21,6 @@ awswrangler
 seaborn
 tqdm
 aws-sam-cli
-sspipe
 pandera
 tox
-coverage
 -e .

@@ -122,6 +122,7 @@ class BootstrapStack(core.Stack):
                             f"arn:aws:iam::{core.Aws.ACCOUNT_ID}:role/{core.Aws.STACK_NAME}*",
                             f"arn:aws:iam::{core.Aws.ACCOUNT_ID}:role/{self.afa_stack_name}*",
                             f"arn:aws:iam::{core.Aws.ACCOUNT_ID}:role/{LAMBDAMAP_STACK_NAME}*",
+                            f"arn:aws:iam::{core.Aws.ACCOUNT_ID}:role/cdk-*",
                             f"arn:aws:iam::{core.Aws.ACCOUNT_ID}:policy/{core.Aws.STACK_NAME}*",
                             f"arn:aws:iam::{core.Aws.ACCOUNT_ID}:policy/{self.afa_stack_name}*",
                             f"arn:aws:iam::{core.Aws.ACCOUNT_ID}:policy/{LAMBDAMAP_STACK_NAME}*",
@@ -192,7 +193,8 @@ class BootstrapStack(core.Stack):
                             "s3:*"
                         ],
                         resources=[
-                            f"arn:aws:s3:::cdktoolkit-stagingbucket-*",
+                            f"arn:aws:s3:::cdk-*",
+                            f"arn:aws:s3:::cdktoolkit-*",
                             f"arn:aws:s3:::afastack*",
                         ]
                     ),
@@ -208,6 +210,7 @@ class BootstrapStack(core.Stack):
                             f"arn:aws:ssm:{core.Aws.REGION}:{core.Aws.ACCOUNT_ID}:parameter/AfaS3InputPath",
                             f"arn:aws:ssm:{core.Aws.REGION}:{core.Aws.ACCOUNT_ID}:parameter/AfaS3OutputPath",
                             f"arn:aws:ssm:{core.Aws.REGION}:{core.Aws.ACCOUNT_ID}:parameter/AfaAfcStateMachineArn",
+                            f"arn:aws:ssm:{core.Aws.REGION}:{core.Aws.ACCOUNT_ID}:parameter/cdk-bootstrap/*",
                         ]
                     ),
 
@@ -246,7 +249,8 @@ class BootstrapStack(core.Stack):
                             "ecr:PutImage",
                             "ecr:SetRepositoryPolicy",
                             "ecr:CreateRepository",
-                            "ecr:PutImageScanningConfiguration"
+                            "ecr:PutImageScanningConfiguration",
+                            "ecr:DeleteRepository"
                         ],
                         resources=[
                             f"*"
