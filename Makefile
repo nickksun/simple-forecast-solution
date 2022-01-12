@@ -17,7 +17,7 @@ default: .venv
 # create the virtual environment from which to run each target
 .venv: requirements.txt
 	python3 -B -m venv $@
-	source $@/bin/activate ; pip install -q -r $<
+	source $@/bin/activate ; pip install -q --use-deprecated=legacy-resolver -r $<
 
 .tox: requirements.txt
 	tox -r --notest
@@ -49,7 +49,7 @@ deploy: build/template.yaml .venv
 		--parameter-overrides \
 			emailAddress=${EMAIL} \
 			instanceType=${INSTANCE_TYPE} \
-		${CFN_TAGS}
+		${CDK_TAGS}
 
 # Deploy the ui stack
 deploy-ui: cdk/app.py .venv
