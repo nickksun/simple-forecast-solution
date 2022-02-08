@@ -24,7 +24,7 @@ INSTANCE_TYPE:=ml.t2.medium
 # create the virtual environment from which to run each target
 .venv: requirements.txt
 	python3 -B -m venv $@
-	source $@/bin/activate ; pip install -r $<
+	source $@/bin/activate ; pip install --use-deprecated=legacy-resolver -r $<
 
 destroy:
 	cd cdk ; cdk destroy --all

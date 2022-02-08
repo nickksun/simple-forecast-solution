@@ -250,7 +250,8 @@ class BootstrapStack(core.Stack):
                             "ecr:SetRepositoryPolicy",
                             "ecr:CreateRepository",
                             "ecr:PutImageScanningConfiguration",
-                            "ecr:DeleteRepository"
+                            "ecr:DeleteRepository",
+                            "ecr:TagResource"
                         ],
                         resources=[
                             f"*"
