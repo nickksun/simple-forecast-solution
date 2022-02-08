@@ -302,7 +302,7 @@ class BootstrapStack(core.Stack):
                                     f"git checkout {lambdamap_branch}",
                                     'make deploy STACK_NAME=$LAMBDAMAP_STACK_NAME CDK_TAGS="$CDK_TAGS" '
                                     'FUNCTION_NAME=$LAMBDAMAP_FUNCTION_NAME '
-                                    f"EXTRA_CMDS='git clone {AFA_REPO_URL} ; cd ./simple-forecast-solution/ ; git checkout {afa_branch} ; pip install -e .'",
+                                    f"EXTRA_CMDS='git clone {AFA_REPO_URL} ; cd ./simple-forecast-solution/ ; git checkout {afa_branch} ; pip install --use-deprecated=legacy-resolver -e .'",
                                     "cd ..",
                                     f"git clone {AFA_REPO_URL}",
                                     "cd simple-forecast-solution/",
