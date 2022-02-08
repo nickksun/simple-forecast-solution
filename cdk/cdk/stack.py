@@ -579,13 +579,13 @@ class AfaStack(cdk.Stack):
         git clone https://github.com/aws-samples/simple-forecast-solution.git
         cd ./simple-forecast-solution ;
         git checkout {self.afa_branch}
-        pip install -q -e .
+        pip install -q --use-deprecated=legacy-resolver -e .
 
         # install lambdamap (required by the dashboard code)
         git clone https://github.com/aws-samples/lambdamap.git
         cd ./lambdamap/
         git checkout {self.lambdamap_branch}
-        pip install -q -e .
+        pip install -q --use-deprecated=legacy-resolver -e .
 
         EOF
         """)
@@ -665,9 +665,9 @@ class AfaStack(cdk.Stack):
         # install jupyter-server-proxy
         source /home/ec2-user/anaconda3/bin/activate JupyterSystemEnv
 
-        pip install --upgrade pip
+        pip install --use-deprecated=legacy-resolver --upgrade pip
         pip uninstall -q --yes nbserverproxy || true
-        pip install -q --upgrade jupyter-server-proxy
+        pip install --use-deprecated=legacy-resolver -q --upgrade jupyter-server-proxy
 
         # restart the jupyterlab server
         initctl restart jupyter-server --no-wait
