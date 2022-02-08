@@ -18,7 +18,7 @@
 
 
 GITHUB:
-    https://github.com/aws-samples/simple-forecat-solution/
+    https://github.com/aws-samples/simple-forecast-solution/
 
 USAGE:
     streamlit run -- ./app.py --local-dir LOCAL_DIR [--landing-page-url URL]

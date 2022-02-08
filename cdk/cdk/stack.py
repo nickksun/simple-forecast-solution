@@ -444,7 +444,7 @@ class AfaStack(cdk.Stack):
                     directory=os.path.join(PWD, "afc_lambdas", "postprocess")),
                 runtime=lambda_.Runtime.FROM_IMAGE,
                 handler=lambda_.Handler.FROM_IMAGE,
-                memory_size=10240,
+                memory_size=3000,
                 role=afc_role,
                 timeout=core.Duration.seconds(900))
 
