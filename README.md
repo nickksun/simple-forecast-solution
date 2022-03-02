@@ -12,6 +12,12 @@
 
 ## :building_construction: Installation
 
+### Manual Installation
+
+_see [cdk/README.md](cdk/README.md)_
+
+### One-Click Installation
+
 1. Create/Login to AWS Account (a new AWS account is recommended for simplicity and testing purposes)
     - **Note**: For AWS Employees using internal AWS accounts - a new internal account is required.
 2. Click on a "Launch Stack" button corresponding to your nearest AWS Region below:
