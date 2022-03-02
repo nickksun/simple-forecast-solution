@@ -1,30 +1,24 @@
 #
-# ...
-#
-# Created:
-#   Sat Jul 24 14:45:13 UTC 2021
-#
 # Usage:
-#   make deploy EMAIL=<your@email.address> INSTANCE_TYPE=<ml.* ec2 instance type>
+#   make deploy EMAIL=<your email address> INSTANCE_TYPE=<ml.* ec2 instance type>
 # 
 export SHELL
 SHELL:=/bin/bash
 ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 STACK_NAME:=AfaBootstrapStack
-S3_BUCKET:=
 
 # SNS emails will be sent to this address to notify when the SageMaker Notebook
 # instances are deployed and when the ML forecasting jobs are completed.
-EMAIL:=
+EMAIL:=user@example.com
 INSTANCE_TYPE:=ml.t2.medium
 
-.PHONY: deploy
+.PHONY: deploy destroy
 
 # create the virtual environment from which to run each target
 .venv: requirements.txt
 	python3 -B -m venv $@
-	source $@/bin/activate ; pip install --use-deprecated=legacy-resolver -r $<
+	source $@/bin/activate ; pip install -r $<
 
 destroy:
 	cd cdk ; cdk destroy --all
@@ -34,14 +28,14 @@ template.yaml: cdk/bootstrap.py .venv
 	source $(word 2, $^)/bin/activate ; \
 	cdk synth -a 'python3 -B $<' > $@
 
-${STACK_NAME}: template.yaml
+${STACK_NAME}: template.yaml .venv
+	source $(word 2, $^)/bin/activate ; \
 	aws cloudformation deploy \
 		--template-file $< \
 		--capabilities CAPABILITY_NAMED_IAM \
 		--stack-name $@ \
 		--parameter-overrides \
 			emailAddress=${EMAIL} \
-			instanceType=${INSTANCE_TYPE} \
-			cdkRoleArn=abc
+			instanceType=${INSTANCE_TYPE}
 
 deploy: ${STACK_NAME}

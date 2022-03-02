@@ -37,11 +37,7 @@ def lambda_handler(event, context):
 
 class BootstrapStack(core.Stack):
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
-        """[summary]
-
-        Args:
-            scope (cdk.Construct): [description]
-            construct_id (str): [description]
+        """
         """
         super().__init__(scope, construct_id)
 
@@ -251,7 +247,8 @@ class BootstrapStack(core.Stack):
                             "ecr:CreateRepository",
                             "ecr:PutImageScanningConfiguration",
                             "ecr:DeleteRepository",
-                            "ecr:TagResource"
+                            "ecr:TagResource",
+                            "ecr:UntagResource"
                         ],
                         resources=[
                             f"*"
@@ -289,7 +286,7 @@ class BootstrapStack(core.Stack):
                                     "export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)",
                                     "export BOOTSTRAP_URL=aws://$AWS_ACCOUNT_ID/$AWS_DEFAULT_REGION",
                                     "npm i --silent --quiet --no-progress -g aws-cdk",
-                                    "(( [[ -n \"CDK_TAGS\" ]] ) && ( cdk bootstrap ${BOOTSTRAP_URL} \"$CDK_TAGS\" )) || ( cdk bootstrap ${BOOTSTRAP_URL} )"
+                                    "(( [[ -n \"CDK_TAGS\" ]] ) && ( cdk bootstrap ${BOOTSTRAP_URL} )) || ( cdk bootstrap ${BOOTSTRAP_URL} )"
                                 ]
                             },
                             "pre_build": {
@@ -302,7 +299,7 @@ class BootstrapStack(core.Stack):
                                     f"git checkout {lambdamap_branch}",
                                     'make deploy STACK_NAME=$LAMBDAMAP_STACK_NAME CDK_TAGS="$CDK_TAGS" '
                                     'FUNCTION_NAME=$LAMBDAMAP_FUNCTION_NAME '
-                                    f"EXTRA_CMDS='git clone {AFA_REPO_URL} ; cd ./simple-forecast-solution/ ; git checkout {afa_branch} ; pip install --use-deprecated=legacy-resolver -e .'",
+                                    f"EXTRA_CMDS=\"'git clone {AFA_REPO_URL} ; cd ./simple-forecast-solution/ ; git checkout {afa_branch} ; pip install --use-deprecated=legacy-resolver -e .'\"",
                                     "cd ..",
                                     f"git clone {AFA_REPO_URL}",
                                     "cd simple-forecast-solution/",
