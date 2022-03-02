@@ -9,5 +9,9 @@ Requirements:
   described in the `cdk/bootstrap.py` CDK script.
 
 ```bash
+# install `cdk`
+npm i -g aws-cdk@2.13.0 # (or similar version ~2.x.x)
+
+# deploy AFA
 make deploy EMAIL=<your email address> INSTANCE_TYPE=<ml.* ec2 instance type>
 ```
