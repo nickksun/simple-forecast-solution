@@ -10,7 +10,7 @@ from aws_cdk import (
     aws_codebuild as codebuild,
 )
 
-AFA_REPO_URL = "https://github.com/vdanniel/simple-forecast-solution.git"
+AFA_REPO_URL = "https://github.com/aws-samples/simple-forecast-solution.git"
 LAMBDAMAP_REPO_URL = "https://github.com/aws-samples/lambdamap.git"
 
 LAMBDAMAP_STACK_NAME = "AfaLambdaMapStack"

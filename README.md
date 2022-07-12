@@ -32,6 +32,11 @@ Asia Pacific (Singapore) | ap-southeast-1 | [![Launch Stack](https://cdn.rawgit.
 EU (Frankfurt) | eu-central-1 | [![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://eu-central-1.console.aws.amazon.com/cloudformation/home?region=eu-central-1#/stacks/quickcreate?templateUrl=https%3A%2F%2Fsfs-public.s3.ap-southeast-2.amazonaws.com%2Ftemplate.yaml&stackName=AfaBootstrapStack&param_instanceType=ml.t2.medium)
 EU (Ireland) | eu-west-1 | [![Launch Stack](https://cdn.rawgit.com/buildkite/cloudformation-launch-stack-button-svg/master/launch-stack.svg)](https://eu-west-1.console.aws.amazon.com/cloudformation/home?region=eu-west-1#/stacks/quickcreate?templateUrl=https%3A%2F%2Fsfs-public.s3.ap-southeast-2.amazonaws.com%2Ftemplate.yaml&stackName=AfaBootstrapStack&param_instanceType=ml.t2.medium)
 
+OR
+
+Use the supplied CFN Template from 
+_see [cfn/cfntemplate.yaml](cfn/cfntemplate.yaml)_ 
+
 3. Enter your e-mail address in the "Parameters" section of the form, as shown below:
 
     > ![](images/cfn-email-parameter.png)
