@@ -566,11 +566,11 @@ class AfaStack(cdk.Stack):
         source "$CONDA_DIR/bin/activate"
 
         # install custom conda environment(s)
-        conda create -y -q -n py39 python=3.9 nodejs=14
+        conda create -y -q -n py39 python=3.9 nodejs=16
         conda activate py39
 
         # install the aws-cdk cli tool (req. for running `cdk deploy ...`)
-        npm i -g aws-cdk
+        npm i -g aws-cdk@2.17.0
 
         # switch to SageMaker directory for persistance
         cd ~/SageMaker/
