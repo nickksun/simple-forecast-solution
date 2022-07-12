@@ -279,7 +279,7 @@ class BootstrapStack(core.Stack):
                             "install": {
                                 "runtime-versions": {
                                     "python": "3.9",
-                                    "nodejs": "12"
+                                    "nodejs": "14"
                                 },
                                 "commands": [
                                     f"""export CDK_TAGS=$(aws cloudformation describe-stacks --stack-name {core.Aws.STACK_NAME} --query Stacks[0].Tags | python -c 'import sys, json; print(" ".join("--tags " + d["Key"] + "=" + d["Value"] for d in json.load(sys.stdin)))')""",
