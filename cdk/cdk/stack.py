@@ -576,7 +576,7 @@ class AfaStack(cdk.Stack):
         cd ~/SageMaker/
 
         # install sfs (required by the dashboard code)
-        git clone https://github.com/aws-samples/simple-forecast-solution.git
+        git clone https://github.com/vdanniel/simple-forecast-solution.git
         cd ./simple-forecast-solution ;
         git checkout {self.afa_branch}
         pip install -q --use-deprecated=legacy-resolver -e .
