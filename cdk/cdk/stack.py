@@ -644,7 +644,9 @@ class AfaStack(cdk.Stack):
 
         # Update the url in the landing page
         sed -i 's|INSERT_URL_HERE|https:\/\/'$DASHBOARD_URL'|' ~/SageMaker/Landing_Page.ipynb
-
+        
+        export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+        
         #
         # start the streamlit demo  on port 8501 of the notebook instance,
         # it will be viewable at:
