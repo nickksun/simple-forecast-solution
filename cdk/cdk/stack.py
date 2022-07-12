@@ -570,7 +570,7 @@ class AfaStack(cdk.Stack):
         conda activate py39
 
         # install the aws-cdk cli tool (req. for running `cdk deploy ...`)
-        npm i -g aws-cdk
+        npm i -g aws-cdk@2.17.0
 
         # switch to SageMaker directory for persistance
         cd ~/SageMaker/
