@@ -43,6 +43,7 @@ class BootstrapStack(Stack):
         super().__init__(scope, construct_id)
 
         afa_branch = kwargs.get("afa_branch", "main")
+        afa_repo = kwargs.get("afa_repo", AFA_REPO_URL)
         lambdamap_branch = kwargs.get("lambdamap_branch", "main")
         self.afa_stack_name = kwargs.get("afa_stack_name", "AfaStack")
 
@@ -301,9 +302,9 @@ class BootstrapStack(Stack):
                                     f"git checkout {lambdamap_branch}",
                                     'make deploy STACK_NAME=$LAMBDAMAP_STACK_NAME CDK_TAGS="$CDK_TAGS" '
                                     'FUNCTION_NAME=$LAMBDAMAP_FUNCTION_NAME '
-                                    f"EXTRA_CMDS=\"'git clone {AFA_REPO_URL} ; cd ./simple-forecast-solution/ ; git checkout {afa_branch} ; pip install --use-deprecated=legacy-resolver -e .'\"",
+                                    f"EXTRA_CMDS=\"'git clone {afa_repo} ; cd ./simple-forecast-solution/ ; git checkout {afa_branch} ; pip install --use-deprecated=legacy-resolver -e .'\"",
                                     "cd ..",
-                                    f"git clone {AFA_REPO_URL}",
+                                    f"git clone {afa_repo}",
                                     "cd simple-forecast-solution/",
                                     f"git checkout {afa_branch}",
                                     f'make deploy-ui EMAIL=$EMAIL INSTANCE_TYPE=$INSTANCE_TYPE AFA_STACK_NAME=$AFA_STACK_NAME CDK_TAGS="$CDK_TAGS" '

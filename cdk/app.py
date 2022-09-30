@@ -17,6 +17,7 @@ app = core.App()
 stack_name = app.node.try_get_context("afa_stack_name")
 boot_stack_name = app.node.try_get_context("boot_stack_name")
 branch = app.node.try_get_context("branch")
+repo = app.node.try_get_context("repo")
 project_tag = app.node.try_get_context("project_tag")
 
 if stack_name is None:
@@ -28,6 +29,9 @@ if boot_stack_name is None:
 if branch is None:
     branch = "main"
 
+if repo is None:
+    repo = "https://github.com/aws-samples/simple-forecast-solution.git"
+
 if project_tag is None:
     project_tag = TAG_VALUE
 
@@ -35,6 +39,6 @@ core.Tags.of(app).add(TAG_NAME, project_tag)
 
 AfaStack(app, stack_name)
 BootstrapStack(app, boot_stack_name, lambdamap_branch=branch,
-                afa_branch=branch)
+                afa_branch=branch, afa_repo=repo)
 
 app.synth()

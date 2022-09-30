@@ -40,6 +40,7 @@ class AfaStack(Stack):
                 description="(Required) SageMaker Notebook instance type on which to host "
                 "the AFA dashboard (e.g. ml.t2.medium, ml.t3.xlarge, ml.t3.2xlarge, ml.m4.4xlarge)")
 
+        self.afa_repo = kwargs.get("afa_repo", "https://github.com/aws-samples/simple-forecast-solution.git")
         self.afa_branch = kwargs.get("afa_branch", "main")
         self.lambdamap_branch = kwargs.get("lambdamap_branch", "main")
         self.lambdamap_function_name = kwargs.get("lambdamap_function_name", "AfaLambdaMapFunction")
@@ -577,7 +578,7 @@ class AfaStack(Stack):
         cd ~/SageMaker/
 
         # install sfs (required by the dashboard code)
-        git clone https://github.com/aws-samples/simple-forecast-solution.git
+        git clone {self.afa_repo}
         cd ./simple-forecast-solution ;
         git checkout {self.afa_branch}
         pip install -q --use-deprecated=legacy-resolver -e .
