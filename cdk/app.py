@@ -30,7 +30,7 @@ if branch is None:
     branch = "main"
 
 if repo is None:
-    repo = "https://github.com/aws-samples/simple-forecast-solution.git"
+    repo = "https://github.com/nickksun/simple-forecast-solution.git"
 
 if project_tag is None:
     project_tag = TAG_VALUE
@@ -39,6 +39,6 @@ core.Tags.of(app).add(TAG_NAME, project_tag)
 
 AfaStack(app, stack_name)
 BootstrapStack(app, boot_stack_name, lambdamap_branch=branch,
-                afa_branch=branch, afa_repo=repo)
+                afa_branch="test", afa_repo=repo)
 
 app.synth()
