@@ -251,7 +251,10 @@ class BootstrapStack(Stack):
                             "ecr:PutImageScanningConfiguration",
                             "ecr:DeleteRepository",
                             "ecr:TagResource",
-                            "ecr:UntagResource"
+                            "ecr:UntagResource",
+                            "ecr-public:GetAuthorizationToken",
+                            "sts:GetServiceBearerToken",
+                            "ecr:PutImageTagMutability"
                         ],
                         resources=[
                             f"*"
@@ -288,7 +291,8 @@ class BootstrapStack(Stack):
                                     f"""export CDK_TAGS=$(aws cloudformation describe-stacks --stack-name {core.Aws.STACK_NAME} --query Stacks[0].Tags | python -c 'import sys, json; print(" ".join("--tags " + d["Key"] + "=" + d["Value"] for d in json.load(sys.stdin)))')""",
                                     "export AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)",
                                     "export BOOTSTRAP_URL=aws://$AWS_ACCOUNT_ID/$AWS_DEFAULT_REGION",
-                                    "npm i --silent --quiet --no-progress -g aws-cdk@2.17.0",
+                                    "npm i --silent --quiet --no-progress -g aws-cdk@2.43.1",
+                                    "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws",
                                     "(( [[ -n \"CDK_TAGS\" ]] ) && ( cdk bootstrap ${BOOTSTRAP_URL} )) || ( cdk bootstrap ${BOOTSTRAP_URL} )"
                                 ]
                             },

@@ -53,7 +53,6 @@ deploy: build/template.yaml .venv
 # Deploy the ui stack
 deploy-ui: cdk/app.py .venv
 	source $(word 2, $^)/bin/activate ; \
-	aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws ; \
 	cdk deploy -a 'python3 -B $<' ${AFA_STACK_NAME} \
 		--require-approval never \
 		--parameters ${AFA_STACK_NAME}:emailAddress=${EMAIL} \
